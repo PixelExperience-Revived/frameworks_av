@@ -415,8 +415,8 @@ private:
         session->setMockError(mMockError);
         mMockError = Status_V1_2::OK;
     }
-
-    DeviceFiles mFileHandle;
+    Mutex mFileHandleLock;
+    DeviceFiles mFileHandle GUARDED_BY(mFileHandleLock);
     Mutex mSecureStopLock;
 
     CLEARKEY_DISALLOW_COPY_AND_ASSIGN_AND_NEW(DrmPlugin);
